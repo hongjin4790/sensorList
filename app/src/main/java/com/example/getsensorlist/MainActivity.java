@@ -5,13 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    TextView mTxtSensors;
-    SensorManager sensorMgr;
+    TextView mTextSensors;
+    SensorManager sensorManager;
     List<Sensor> sensorList;
 
     @Override
@@ -19,16 +20,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTxtSensors = findViewById(R.id.txtSensors);
-        sensorMgr = (SensorManager) getSystemService(SENSOR_SERVICE);
-        sensorList = sensorMgr.getSensorList(Sensor.TYPE_ALL);
-        mTxtSensors.append("(# Sensor: "+ sensorList.size() + ")\n\n");
+        mTextSensors = findViewById(R.id.textSensors);
+        //mTextSensors.setMovementMethod((new ScrollingMovementMethod()));
 
-        for(Sensor sensor: sensorList){
-            mTxtSensors.append("Sensor name: "+ sensor.getName()+ "\n");
-            mTxtSensors.append("Sensor type: "+ sensor.getType() +"\n\n");
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorList = sensorManager.getSensorList(Sensor.TYPE_ALL);
 
+        mTextSensors.append("(# Sensors:" + sensorList.size() + ")\n\n");
+        for(Sensor sensor : sensorList){
+            mTextSensors.append("Sensor name: " + sensor.getName() + "\n");
+            mTextSensors.append("Sensor type: " + sensor.getType() + "\n\n");
         }
-
     }
 }
