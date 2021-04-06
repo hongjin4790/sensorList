@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     TextView mTextSensors;
     SensorManager sensorManager;
     List<Sensor> sensorList;
@@ -29,20 +29,17 @@ public class MainActivity extends AppCompatActivity {
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorList = sensorManager.getSensorList(Sensor.TYPE_ALL);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mTextSensors.append("(# Sensors:" + sensorList.size() + ")\n\n");
-                for(Sensor sensor : sensorList){
-                    mTextSensors.append("Sensor name: " + sensor.getName() + "\n");
-                    mTextSensors.append("Sensor type: " + sensor.getType() + "\n\n");
-                }
-            }
-        });
+        button.setOnClickListener(this);
 
 
+    }
 
-
-
+    @Override
+    public void onClick(View v) {
+        mTextSensors.append("(# Sensors:" + sensorList.size() + ")\n\n");
+        for (Sensor sensor : sensorList) {
+            mTextSensors.append("Sensor name: " + sensor.getName() + "\n");
+            mTextSensors.append("Sensor type: " + sensor.getType() + "\n\n");
+        }
     }
 }
