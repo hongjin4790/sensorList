@@ -50,4 +50,12 @@
         </LinearLayout>
     </ScrollView>
 
+    <Button
+        android:id="@+id/retrieve_sensors_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retrieve Sensors"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/textView2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
